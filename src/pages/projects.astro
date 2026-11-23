@@ -74,6 +74,11 @@ const projects = [
                 View Source Code &rarr;
               </a>
             )}
+            {project.link && (
+  <a href={project.link} class="project-link">
+    Try It Live &rarr;
+  </a>
+)}  
           </div>
         </article>
       ))}
