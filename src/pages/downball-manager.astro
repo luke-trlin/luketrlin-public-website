@@ -1,0 +1,104 @@
+---
+// src/pages/downball-manager.astro
+import Layout from '../layouts/Layout.astro';
+
+const appUrl = "/dbm/";
+const github = ""; // add a repo URL here if you have one
+
+const features = [
+  "Single-file app: HTML, CSS and JavaScript, no framework or backend",
+  "Persistent sessions saved in the browser with localStorage",
+  "Hub-style dashboard with a command deck and session banner",
+  "Fully responsive layout for desktop and mobile",
+];
+const tags = ["JavaScript", "HTML/CSS", "localStorage", "UI Design"];
+---
+
+<Layout title="Downball Manager | Luke Trlin">
+  <main class="dbm-page">
+    <header class="page-header">
+      <a href="/projects" class="back-link">&larr; All Projects</a>
+      <h1>Downball Manager</h1>
+      <p>
+        A browser-based management tool for downball, built from scratch as a single
+        self-contained web app. Try it live below.
+      </p>
+      <div class="tags">
+        {tags.map((t) => <span class="tag">{t}</span>)}
+      </div>
+      <div class="actions">
+        <a href={appUrl} target="_blank" rel="noopener" class="btn btn-primary">Open Full Screen &nearr;</a>
+        {github && <a href={github} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View Source</a>}
+      </div>
+    </header>
+
+    <section class="demo">
+      <iframe
+        src={appUrl}
+        title="Downball Manager"
+        loading="lazy"
+        class="app-frame"
+      ></iframe>
+      <p class="hint">Works best full screen on mobile. Your data is stored locally in your own browser.</p>
+    </section>
+
+    <section class="features">
+      <h2>Highlights</h2>
+      <ul>
+        {features.map((f) => <li>{f}</li>)}
+      </ul>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .dbm-page { padding: 2rem 0; }
+
+  .page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .back-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  .page-header h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .page-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 680px; line-height: 1.6; margin-bottom: 1.25rem; }
+
+  .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .tag { background: #1e293b; color: var(--text-muted); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px; }
+
+  .actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center;
+    padding: 0.65rem 1.3rem; border-radius: 8px;
+    text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+  .btn-primary { background-color: var(--accent); color: #0b0f19; }
+  .btn-primary:hover { background-color: var(--accent-hover); color: #fff; }
+  .btn-secondary { background-color: var(--card-bg); color: var(--text); border: 1px solid var(--card-border); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  .app-frame {
+    width: 100%;
+    height: 80vh;
+    min-height: 560px;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    background: #163429;
+  }
+  .hint { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.75rem; }
+
+  .features { margin: 2.5rem 0; }
+  .features h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; }
+  .features ul { color: var(--text-muted); line-height: 1.8; padding-left: 1.25rem; }
+</style>
